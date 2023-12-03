@@ -14,13 +14,14 @@
                         <li class="mb-4">
                             <p><strong>Título do podcast:</strong> {{ $podcast->title }}</p>
                             <p><strong>Resumo:</strong> {{ $podcast->description }}</p>
-                            <p><strong>Imagem associada:</strong> <!--( {{ $podcast->image }})</p>-->
+                            <p><strong>Imagem associada:</strong></p>
                             @if($podcast->image)
                             <p><img src="{{ asset('storage/images/'.basename($podcast->image)) }}" width="320" alt="Podcast Image"></p>
                             @else
                                 <p>Sem imagem associada</p>
                             @endif
-                            <p><strong>Video associado: </strong></p><!--<p>{{ $podcast->video }}</p>-->
+
+                            <p><strong>Video associado:</strong></p>
                             @if ($podcast->video)
                             <video width="320" height="240" controls>
                                 <source src="{{ asset('storage/videos/'.basename($podcast->video)) }}" type="video/mp4">

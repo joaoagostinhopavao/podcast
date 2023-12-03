@@ -30,10 +30,8 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('podcasts', \App\Http\Controllers\PodcastController::class)
     ->middleware(['auth','verified']);
-   // ->except(['show', 'edit', 'update']); // Exclude unnecessary methods
 
-Route::resource('loja', \App\Http\Controllers\LojaController::class)
-    ->only(['index','store','edit','create','update','destroy'])
+Route::resource('produtos_loja', \App\Http\Controllers\ProdutoController::class)
     ->middleware(['auth','verified']);
 
 require __DIR__.'/auth.php';

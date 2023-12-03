@@ -117,10 +117,10 @@ class PodcastController extends Controller
             'reference_id' => 'required',
             'title' => 'required',
             'description' => 'required',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096', // Se estiver fazendo upload de imagem
-            'video' => 'file|mimes:mp4,ogg,webm,mov|max:20480', // Se estiver fazendo upload de vídeo
-            'image_url' => 'nullable|url', // Se estiver inserindo URL de imagem
-            'video_url' => 'nullable|url', // Se estiver inserindo URL de vídeo
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096', // Se estiver a fazer upload de imagem
+            'video' => 'file|mimes:mp4,ogg,webm,mov|max:20480', // Se estiver a fazer upload de vídeo
+            'image_url' => 'nullable|url', // Se estiver a inserir URL de imagem
+            'video_url' => 'nullable|url', // Se estiver a indserir URL de vídeo
         ], [
             'reference_id.required' => 'O campo de ID de referência é obrigatório.',
             'title.required' => 'O campo de título é obrigatório.',
@@ -138,7 +138,9 @@ class PodcastController extends Controller
         logger('Update passou a validação');
 
     try {
-        // Lógica para lidar com upload de imagem, se fornecida
+        /* Lógica para lidar com upload de imagem, se fornecida
+
+        */
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images', 'public');
             logger('Image uploaded successfully: '.$imagePath);
@@ -150,7 +152,11 @@ class PodcastController extends Controller
             logger('Using existing image: '.$imagePath);
         }
         logger('Update upload da imagem completo');
-        // Lógica para lidar com upload de vídeo, se fornecido
+
+
+        /* Lógica para lidar com upload de vídeo, se fornecido
+
+        */
         if ($request->hasFile('video')) {
             $videoPath = $request->file('video')->store('videos', 'public');
             logger('Video uploaded successfully: '.$videoPath);
@@ -162,6 +168,7 @@ class PodcastController extends Controller
             logger('Using existing video: '.$videoPath);
         }
         logger('Update video path: ' . $videoPath);
+
         // Criação de um novo podcast
         $podcast->update([
             'reference_id' => $request->input('reference_id'),
